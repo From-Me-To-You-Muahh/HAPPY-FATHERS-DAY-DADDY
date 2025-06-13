@@ -171,46 +171,72 @@
 
   <a class="back-home" href="index.html">← Back to the Letter</a>
 
-  <script>
-    const music = document.getElementById("loveSong");
-    let isPlaying = false;
+ 
 
-    function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-      } else {
-        music.play();
+
+
+
+<script>
+  const music = document.getElementById("loveSong");
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+    } else {
+      music.play();
+    }
+    isPlaying = !isPlaying;
+  }
+
+  let slideIndex = 0;
+  const slides = document.getElementsByClassName("slide");
+  let slideTimer;
+
+  function showSlide(index) {
+    // Clear any previous timer
+    clearTimeout(slideTimer);
+
+    // Hide all slides and reset videos
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+      const video = slides[i].querySelector("video");
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
       }
-      isPlaying = !isPlaying;
     }
 
-    let slideIndex = 0;
-    const slides = document.getElementsByClassName("slide");
+    // Show the current slide
+    slides[index].style.display = "block";
+    const currentVideo = slides[index].querySelector("video");
 
-    function showSlidesAuto() {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-        const media = slides[i].querySelector('video');
-        if (media) media.pause();
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1 }
-      slides[slideIndex - 1].style.display = "block";
-      const current = slides[slideIndex - 1].querySelector('video');
-      if (current) current.play();
+    if (currentVideo) {
+      currentVideo.play();
     }
 
-    function plusSlides(n) {
-      slideIndex += n - 1;
-      if (slideIndex < 0) slideIndex = slides.length - 1;
-      if (slideIndex >= slides.length) slideIndex = 0;
-      showSlidesAuto();
-    }
+    // Set the next slide after 8 seconds
+    slideTimer = setTimeout(nextSlide, 8000);
+  }
 
-    // Start slideshow
-    showSlidesAuto();
-    setInterval(showSlidesAuto, 4000);
-  </script>
+  function nextSlide() {
+    slideIndex++;
+    if (slideIndex >= slides.length) slideIndex = 0;
+    showSlide(slideIndex);
+  }
+
+  function plusSlides(n) {
+    slideIndex += n;
+    if (slideIndex < 0) slideIndex = slides.length - 1;
+    if (slideIndex >= slides.length) slideIndex = 0;
+    showSlide(slideIndex);
+  }
+
+  // Start the slideshow
+  showSlide(slideIndex);
+</script>
+
+
 
 </body>
 </html>
