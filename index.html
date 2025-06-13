@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Father's Day ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #1b1b1b, #2f2f2f);
+      color: #f1f1f1;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #ffd369;
+      margin-bottom: 40px;
+    }
+    .envelope-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+      margin-bottom: 40px;
+    }
+    .envelope {
+      width: 200px;
+      height: 120px;
+      background-color: #ffd369;
+      position: relative;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      border: 2px solid #e4b800;
+      transition: transform 0.6s;
+    }
+    .envelope:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #e4b800;
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
+      z-index: 1;
+    }
+    .envelope span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      color: #1b1b1b;
+      z-index: 2;
+    }
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 99;
+    }
+    .modal-content {
+      background: #2c2c2c;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 700px;
+      width: 100%;
+      color: #ffd369;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      position: relative;
+      box-shadow: 0 4px 25px rgba(255, 211, 105, 0.3);
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      color: #ffd369;
+      cursor: pointer;
+    }
+    .memory-link {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 1.1rem;
+      color: #ffd369;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .memory-link:hover {
+      text-decoration: underline;
+    }
+    .floating-icon {
+      position: absolute;
+      font-size: 40px;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.4;
+    }
+    .floating-icon:nth-child(odd) { animation-duration: 5s; }
+    .floating-icon:nth-child(even) { animation-duration: 7s; }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-80px); opacity: 0.6; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .envelope { width: 160px; height: 100px; }
+      .modal-content { padding: 20px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-icon" style="top: 10%; left: 5%;">💛</div>
+  <div class="floating-icon" style="top: 25%; left: 75%;">💛</div>
+  <div class="floating-icon" style="top: 60%; left: 20%;">💛</div>
+  <div class="floating-icon" style="top: 80%; left: 60%;">💛</div>
+
+  <h1>Happy Father's Day, Dad ❤️</h1>
+
+  <div class="envelope-wrapper">
+    <div class="envelope" onclick="openModal()">
+      <span>OPEN ME</span>
+    </div>
+  </div>
+
+  <a href="memories.html" class="memory-link">See Our Moments Together →</a>
+
+  <div class="modal" id="dadModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <p>
+        Dear Dad ❤️,<br><br>
+        You’re our superhero, our biggest cheerleader, and our safe space all in one. There’s nothing we appreciate more than your love, your strength, and how you always show up for us.<br><br>
+        From the silly jokes to the deep talks, the times you carried us (literally and emotionally), we cherish it all. You’ve taught us what it means to love, to lead, and to live with purpose.<br><br>
+        We love you with all our hearts, and today is all about celebrating the amazing man you are. Forever your biggest fans!<br><br>
+        <strong>— Your Loving Children ❤️</strong>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('dadModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('dadModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

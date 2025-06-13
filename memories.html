@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Special Moments, Dad 🤍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto Slab', serif;
+      background: linear-gradient(to bottom right, #1b1b1b, #2f2f2f);
+      color: #f1f1f1;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ffd369;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery img, .gallery video {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(255, 211, 105, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover, .gallery video:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(255, 211, 105, 0.3);
+    }
+
+    .audio-controls {
+      margin: 20px 0 40px;
+    }
+
+    .audio-button {
+      background-color: #ffd369;
+      color: #1b1b1b;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 211, 105, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .audio-button:hover {
+      background-color: #e4b800;
+    }
+
+    a.back-home {
+      display: inline-block;
+      margin-top: 50px;
+      font-size: 1.1rem;
+      color: #ffd369;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.back-home:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .audio-button {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Our Special Moments, Dad 🤍</h1>
+
+  <p>
+    Every smile, every video, and every photo here reminds us of how amazing you are. 
+    These moments are just a small piece of the love and memories we've shared. 
+    We love you so much, Dad. Happy Father's Day! 💛
+  </p>
+
+  <div class="audio-controls">
+    <button class="audio-button" onclick="toggleMusic()">🎶 Play / Pause Music</button>
+    <audio id="loveSong" loop>
+      <source src="Philippe-LAVILJocelyneBEROARD-KOLE-SERE.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div class="gallery">
+    <!-- 20 JPGs -->
+    <img src="first.jpg" alt="Memory 1">
+    <img src="2.jpg" alt="Memory 2">
+    <img src="3.jpg" alt="Memory 3">
+    <img src="4.jpg" alt="Memory 4">
+      <video src="1.mp4" loop autoplay muted playsinline></video>
+
+    <img src="5.jpg" alt="Memory 5">
+    <img src="6.jpg" alt="Memory 6">
+    <img src="7.jpg" alt="Memory 7">
+    <img src="8.jpg" alt="Memory 8">
+    <video src="2.mp4" loop autoplay muted playsinline></video>
+
+
+    <img src="9.jpg" alt="Memory 9">
+    <img src="10.jpg" alt="Memory 10">
+    <img src="11.jpg" alt="Memory 11">
+    <img src="12.jpg" alt="Memory 12">
+    <video src="3.mp4" loop autoplay muted playsinline></video>
+
+
+    <img src="13.jpg" alt="Memory 13">
+    <img src="14.jpg" alt="Memory 14">
+    <img src="15.jpg" alt="Memory 15">
+    <img src="16.jpg" alt="Memory 16">
+        <video src="4.mp4" loop autoplay muted playsinline></video>
+
+    <img src="17.jpg" alt="Memory 17">
+    <img src="18.jpg" alt="Memory 18">
+    <img src="last.jpg" alt="Memory 20">
+
+    <!-- 4 MP4s -->
+  </div>
+
+  <a class="back-home" href="index.html">← Back to the Letter</a>
+
+  <script>
+    const music = document.getElementById("loveSong");
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+      } else {
+        music.play();
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+
+</body>
+</html>
