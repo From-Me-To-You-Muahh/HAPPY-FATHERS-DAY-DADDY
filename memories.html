@@ -28,26 +28,51 @@
       margin: 0 auto 40px;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 0 10px;
-      max-width: 1200px;
-      margin: 0 auto;
+    .slideshow-container {
+      position: relative;
+      max-width: 90%;
+      margin: auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(255, 211, 105, 0.2);
     }
 
-    .gallery img, .gallery video {
+    .slide {
+      display: none;
+    }
+
+    .slide img, .slide video {
       width: 100%;
       height: auto;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(255, 211, 105, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 20px;
     }
 
-    .gallery img:hover, .gallery video:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 25px rgba(255, 211, 105, 0.3);
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: #ffd369;
+      font-weight: bold;
+      font-size: 24px;
+      transition: 0.3s ease;
+      user-select: none;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(255, 211, 105, 0.5);
     }
 
     .audio-controls {
@@ -91,12 +116,9 @@
       p {
         font-size: 1rem;
       }
-      .gallery {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      .audio-button {
-        width: 90%;
+      .prev, .next {
+        font-size: 18px;
+        padding: 10px;
       }
     }
   </style>
@@ -118,39 +140,33 @@
     </audio>
   </div>
 
-  <div class="gallery">
-    <!-- 20 JPGs -->
-    <img src="first.jpg" alt="Memory 1">
-    <img src="2.jpg" alt="Memory 2">
-    <img src="3.jpg" alt="Memory 3">
-    <img src="4.jpg" alt="Memory 4">
-      <video src="1.mp4" loop autoplay muted playsinline></video>
+  <div class="slideshow-container">
+    <div class="slide"><img src="first.jpg" alt="Memory 1"></div>
+    <div class="slide"><img src="2.jpg" alt="Memory 2"></div>
+    <div class="slide"><img src="3.jpg" alt="Memory 3"></div>
+    <div class="slide"><img src="4.jpg" alt="Memory 4"></div>
+    <div class="slide"><video src="1.mp4" loop muted playsinline></video></div>
+    <div class="slide"><img src="5.jpg" alt="Memory 5"></div>
+    <div class="slide"><img src="6.jpg" alt="Memory 6"></div>
+    <div class="slide"><img src="7.jpg" alt="Memory 7"></div>
+    <div class="slide"><img src="8.jpg" alt="Memory 8"></div>
+    <div class="slide"><video src="2.mp4" loop muted playsinline></video></div>
+    <div class="slide"><img src="9.jpg" alt="Memory 9"></div>
+    <div class="slide"><img src="10.jpg" alt="Memory 10"></div>
+    <div class="slide"><img src="11.jpg" alt="Memory 11"></div>
+    <div class="slide"><img src="12.jpg" alt="Memory 12"></div>
+    <div class="slide"><video src="3.mp4" loop muted playsinline></video></div>
+    <div class="slide"><img src="13.jpg" alt="Memory 13"></div>
+    <div class="slide"><img src="14.jpg" alt="Memory 14"></div>
+    <div class="slide"><img src="15.jpg" alt="Memory 15"></div>
+    <div class="slide"><img src="16.jpg" alt="Memory 16"></div>
+    <div class="slide"><video src="4.mp4" loop muted playsinline></video></div>
+    <div class="slide"><img src="17.jpg" alt="Memory 17"></div>
+    <div class="slide"><img src="18.jpg" alt="Memory 18"></div>
+    <div class="slide"><img src="last.jpg" alt="Memory 20"></div>
 
-    <img src="5.jpg" alt="Memory 5">
-    <img src="6.jpg" alt="Memory 6">
-    <img src="7.jpg" alt="Memory 7">
-    <img src="8.jpg" alt="Memory 8">
-    <video src="2.mp4" loop autoplay muted playsinline></video>
-
-
-    <img src="9.jpg" alt="Memory 9">
-    <img src="10.jpg" alt="Memory 10">
-    <img src="11.jpg" alt="Memory 11">
-    <img src="12.jpg" alt="Memory 12">
-    <video src="3.mp4" loop autoplay muted playsinline></video>
-
-
-    <img src="13.jpg" alt="Memory 13">
-    <img src="14.jpg" alt="Memory 14">
-    <img src="15.jpg" alt="Memory 15">
-    <img src="16.jpg" alt="Memory 16">
-        <video src="4.mp4" loop autoplay muted playsinline></video>
-
-    <img src="17.jpg" alt="Memory 17">
-    <img src="18.jpg" alt="Memory 18">
-    <img src="last.jpg" alt="Memory 20">
-
-    <!-- 4 MP4s -->
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
   </div>
 
   <a class="back-home" href="index.html">← Back to the Letter</a>
@@ -167,6 +183,33 @@
       }
       isPlaying = !isPlaying;
     }
+
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+
+    function showSlidesAuto() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        const media = slides[i].querySelector('video');
+        if (media) media.pause();
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      const current = slides[slideIndex - 1].querySelector('video');
+      if (current) current.play();
+    }
+
+    function plusSlides(n) {
+      slideIndex += n - 1;
+      if (slideIndex < 0) slideIndex = slides.length - 1;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      showSlidesAuto();
+    }
+
+    // Start slideshow
+    showSlidesAuto();
+    setInterval(showSlidesAuto, 4000);
   </script>
 
 </body>
